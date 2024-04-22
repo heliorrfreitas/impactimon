@@ -1,0 +1,14 @@
+Name,AttackScore,Accuracy,Special,Type
+Fire Fang,3,7,,Fire
+Flamethrower,5,5,,Fire
+Searing Shot,0,10,debuffAttack,Fire
+Leaf Blade,2,8,,Grass
+Leaf Storm,6,4,,Grass
+Synthesis,0,10,heal,Grass
+Muddy Water,0,10,debuffAccuracy,Water
+Water Pulse,1,9,,Water
+Aqua Jet,7,3,,Water
+Harden,0,10,buff,Ground
+Earthquake,4,6,,Ground
+Fissure,8,2,,Ground
+Tackle,2,8,,Normal
