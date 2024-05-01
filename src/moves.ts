@@ -1,17 +1,9 @@
-import { Type } from "./typeAdvantage"
-enum SpecialMove{
-    buff,
-    debuffAttack,
-    debuffAccuracy,
-    heal
-}
+import { Type } from "./typeAdvantage";
 
-interface Move {
-    Name: String,
-    AttackScore: Number,
-    Special: SpecialMove,
-    Accuracy: Number,
-    Type: Type
-}
+// TODO: create a enum called SpecialMove which (Buff, DebuffAttack, DebuffAccuracy, Heal)
+// Check best practices when creating an enum
 
-export let moves:Array<Move> = []
+// TODO: create an interface called Move which contains the fields: name, attackScore, special, accuracy, type
+
+// TODO: why should we not use any? Replace the any with the new type create previously
+export let moves: Array<any> = [];
