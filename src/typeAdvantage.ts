@@ -1,44 +1,50 @@
 export enum Type {
-    Fire,
-    Grass,
-    Water,
-    Ground,
-    Normal
+  Fire,
+  Grass,
+  Water,
+  Ground,
+  Normal,
 }
+export enum Advantage {
+  Effective = 1.5,
+  Neutral = 1,
+  Ineffective = 0.5,
+}
+
 export let typeAdvantage = {
-    Fire: {
-        Grass: 1.5,
-        Water: 1,
-        Ground: .5,
-        Normal: 1,
-        Fire: 1,
-    },
-    Grass: {
-        Grass: 1,
-        Water: .5,
-        Ground: 1.5,
-        Normal: 1,
-        Fire: 1,
-    },
-    Water: {
-        Grass: .5,
-        Water: 1,
-        Ground: 1,
-        Normal: 1,
-        Fire: 1.5,
-    },
-    Ground: {
-        Grass: 1,
-        Water: 1.5,
-        Ground: 1,
-        Normal: 1,
-        Fire: .5,
-    },
-    Normal: {
-        Grass: 1,
-        Water: 1,
-        Ground: 1,
-        Normal: 1,
-        Fire: 1,
-    },
-}
+  Fire: {
+    Grass: Advantage.Effective,
+    Water: Advantage.Neutral,
+    Ground: Advantage.Ineffective,
+    Normal: Advantage.Neutral,
+    Fire: Advantage.Neutral,
+  },
+  Grass: {
+    Grass: Advantage.Neutral,
+    Water: Advantage.Ineffective,
+    Ground: Advantage.Effective,
+    Normal: Advantage.Neutral,
+    Fire: Advantage.Neutral,
+  },
+  Water: {
+    Grass: Advantage.Ineffective,
+    Water: Advantage.Neutral,
+    Ground: Advantage.Neutral,
+    Normal: Advantage.Neutral,
+    Fire: Advantage.Effective,
+  },
+  Ground: {
+    Grass: Advantage.Neutral,
+    Water: Advantage.Effective,
+    Ground: Advantage.Neutral,
+    Normal: Advantage.Neutral,
+    Fire: Advantage.Ineffective,
+  },
+  Normal: {
+    Grass: Advantage.Neutral,
+    Water: Advantage.Neutral,
+    Ground: Advantage.Neutral,
+    Normal: Advantage.Neutral,
+    Fire: Advantage.Neutral,
+  },
+};
