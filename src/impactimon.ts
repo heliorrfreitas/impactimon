@@ -1,4 +1,6 @@
 import * as readline from "readline";
+import { Type } from "./typeAdvantage";
+import { randomInt } from "crypto";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -34,14 +36,29 @@ async function buildImpactimon() {
   console.log(`Their type is: ${type}`);
   rl.pause();
 }
+function generateRandomNameAndType() {
+  let arr = [
+    ["Squirtle", Type[Type.Water]],
+    ["Charmander", Type[Type.Fire]],
+    ["Turtwig", Type[Type.Grass]],
+    ["Geodude", Type[Type.Ground]],
+  ];
+  let pos = randomInt(arr.length);
+  console.log("You are fighting: ", arr[pos][0], " of type: ", arr[pos][1]);
+  return arr[pos];
+}
+function generateRandomOpponent() {
+  let nameType = generateRandomNameAndType();
+}
 async function gameRunner() {
   // gameRunner is the main function, it is the orchestrator
   // where is the type in here? Look at implicit typing.
   // menu to choose pokemon
   // start the game
+  console.log("Welcome to Impactimon!");
   buildImpactimon().then(async () => {
+    generateRandomOpponent();
     // while(player.hp > 0 && computer.hp > 0)
-    console.log("Welcome to Impactimon!");
     while (true) {
       await runTurn(); // run until someone wins
     }
@@ -63,6 +80,7 @@ async function runTurn() {
   });
   rl.pause();
   console.log(`You chose move number: ${move}`);
+  battle();
 }
 function battle() {
   // input - playerMove, opponentMove
