@@ -1,9 +1,9 @@
 export enum Type {
-  Fire,
-  Grass,
-  Water,
-  Ground,
-  Normal,
+  Fire = "Fire",
+  Grass = "Grass",
+  Water = "Water",
+  Ground = "Ground",
+  Normal = "Normal",
 }
 export enum Advantage {
   Effective = 1.5,

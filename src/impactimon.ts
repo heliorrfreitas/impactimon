@@ -1,12 +1,21 @@
 import * as readline from "readline";
 import { Type } from "./typeAdvantage";
 import { randomInt } from "crypto";
+import { Move } from "./moves";
+import { moves } from "./moves";
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
   terminal: true,
 });
+
+interface Impactimon {
+  name: string;
+  type: Type;
+  hp: number;
+  moves: Move[];
+}
 
 let playerDamageMultiplyer = 1;
 let opponentDamageMultiplyer = 1;
@@ -21,7 +30,7 @@ async function buildImpactimon() {
   // array of moves is created based on type (type specific attacks + tackle)
   // returns a impactimonObject which constains name, array of moves, hp, type
   console.log("Build your Mon!");
-  const name = await new Promise((resolve) => {
+  const name: string = await new Promise((resolve) => {
     rl.question("Name your Impactimon \n", resolve);
   });
   console.log(`You named them: ${name}`);
@@ -35,7 +44,19 @@ async function buildImpactimon() {
   });
   console.log(`Their type is: ${type}`);
   rl.pause();
+
+  const impactimon: Impactimon = {
+    name,
+    type: Type[type as Type],
+    hp: randomInt(110) + 70, // effectively 70 - 180
+    moves: moves.filter(
+      (move) => move.type === type || move.type === Type.Normal
+    ),
+  };
+
+  console.log(impactimon);
 }
+
 function generateRandomNameAndType() {
   let arr = [
     ["Squirtle", Type[Type.Water]],
@@ -47,16 +68,18 @@ function generateRandomNameAndType() {
   console.log("You are fighting: ", arr[pos][0], " of type: ", arr[pos][1]);
   return arr[pos];
 }
+
 function generateRandomOpponent() {
   let nameType = generateRandomNameAndType();
 }
+
 async function gameRunner() {
   // gameRunner is the main function, it is the orchestrator
   // where is the type in here? Look at implicit typing.
   // menu to choose pokemon
   // start the game
   console.log("Welcome to Impactimon!");
-  buildImpactimon().then(async () => {
+  buildImpactimon().then(async (impactimon) => {
     generateRandomOpponent();
     // while(player.hp > 0 && computer.hp > 0)
     while (true) {
@@ -66,6 +89,7 @@ async function gameRunner() {
   // determine who won and display message
   // want to play again? Yes/No
 }
+
 async function runTurn() {
   // this will contain the logic of the turn which involves the battle happening
   // input from player
@@ -82,10 +106,12 @@ async function runTurn() {
   console.log(`You chose move number: ${move}`);
   battle();
 }
+
 function battle() {
   // input - playerMove, opponentMove
   // output
 }
+
 function resolveSpecial() {}
 
 gameRunner();
